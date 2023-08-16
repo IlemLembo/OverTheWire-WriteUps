@@ -1,0 +1,15 @@
+ls -al /etc/cron.d/
+
+read the command carefully ,
+This line is the one that interest us here : -rw-r--r--   1 root root   122 Apr 23 18:04 cronjob_bandit23
+now read this file with :"cat /etc/cron.d/*bandit23" 
+We find out that this contain some  command, first setting some variable using some variable
+
+we will use their variable to solve this, why bother creating ours ?
+Their variable :
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+		Ours variable :
+#			mytarget=$(echo I am user bandit23 | md5sum | cut -d ' ' -f 1) # If we have kept their variable value, bandit23 will be replaced dynamically by bandit22, thus resulting in a false value. the command &myname is output whoami command which abviously change from one user to another
+
+We can now use this command to read the famous file :
+#			cat /tmp/$mytarget
